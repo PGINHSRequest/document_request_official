@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>School Document Request Form</h1>
+    <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+      <input type="text" name="Full Name" placeholder="Full Name" required />
+      <input type="text" name="Student ID" placeholder="Student ID" required />
+      <input type="email" name="Email" placeholder="Your Email" required />
+      <select name="Document Type" required>
+        <option value="">Select Document</option>
+        <option value="Transcript">Transcript</option>
+        <option value="Certificate">Certificate</option>
+        <option value="Enrollment Letter">Enrollment Letter</option>
+      </select>
+      <textarea name="Additional Info" placeholder="Extra information (if any)"></textarea>
+
+      <!-- FormSubmit hidden fields -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Your request has been received. The school admin will process it soon.">
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+</body>
+</html>
