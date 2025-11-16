@@ -5,30 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document Request</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // <-- Replace this
+    })();
+  </script>
 </head>
+
 <body>
   <div class="container">
     <h1>School Document Request Form</h1>
-    <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
-      <input type="text" name="Full Name" placeholder="Full Name" required />
-      <input type="text" name="Student ID" placeholder="Student ID" required />
-      <input type="email" name="Email" placeholder="Your Email" required />
-      <select name="Document Type" required>
+
+    <form id="requestForm">
+      <input type="text" name="full_name" placeholder="Full Name" required />
+      <input type="text" name="student_id" placeholder="Student ID" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+
+      <select name="document_type" required>
         <option value="">Select Document</option>
         <option value="Transcript">Transcript</option>
         <option value="Certificate">Certificate</option>
         <option value="Enrollment Letter">Enrollment Letter</option>
       </select>
-      <textarea name="Additional Info" placeholder="Extra information (if any)"></textarea>
 
-      <!-- FormSubmit hidden fields -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_autoresponse" value="Your request has been received. The school admin will process it soon.">
+      <textarea name="additional_info" placeholder="Extra information (if any)"></textarea>
 
       <button type="submit">Submit Request</button>
     </form>
+
+    <p id="status" style="margin-top: 15px;"></p>
   </div>
+
+  <script>
+    document.getElementById("requestForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const status = document.getElementById("status");
+
+      emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+        .then(() => {
+          status.innerHTML = "Request sent successfully!";
+          status.style.color = "green";
+          this.reset();
+        }, (error) => {
+          status.innerHTML = "Failed to send. Try again.";
+          status.style.color = "red";
+        });
+    });
+  </script>
+
 </body>
 </html>
-
