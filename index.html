@@ -34,7 +34,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Replace with your EmailJS User ID
   emailjs.init("AEp6caL5vX8Yt2-Ln");
 
   const form = document.getElementById('requestForm');
@@ -50,7 +49,7 @@
       notes: form.notes.value
     };
 
-    console.log("Sending form data:", formData); // Optional: for debugging
+    console.log("Sending form data:", formData);
 
     emailjs.send('service_kypw3ko', 'template_4cmy51', formData)
       .then(function(response) {
