@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PGINHS Document Request</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>📘 Padre Garcia INHS Document Request</h1>
+    <h1>School Document Request Form</h1>
     <form id="requestForm">
-      <input name="full_name" type="text" required placeholder="Full Name">
-      <input name="student_lrn" type="text" required placeholder="Student's LRN">
-      <input name="grade_section" type="text" required placeholder="Grade & Section">
-      <input name="email" type="email" required placeholder="Email">
+      <input name="full_name" type="text" required placeholder="Full Name"><br>
+      <input name="student_lrn" type="text" required placeholder="Student's LRN"><br>
+      <input name="grade_section" type="text" required placeholder="Grade & Section"><br>
+      <input name="email" type="email" required placeholder="Email"><br>
       <select name="document_type" required>
         <option value="">-- Select Document --</option>
         <option value="Transcript">Transcript</option>
         <option value="Certificate">Certificate</option>
         <option value="Recommendation Letter">Recommendation Letter</option>
-      </select>
-      <textarea name="additional_info" placeholder="Additional Info (if any)"></textarea>
+      </select><br>
+      <textarea name="additional_info" placeholder="Additional Info (if any)"></textarea><br>
       <button type="submit">Submit Request</button>
     </form>
   </div>
@@ -28,19 +28,20 @@
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("YOUR_PUBLIC_KEY"); // replace with your EmailJS public key
+
     document.getElementById("requestForm").addEventListener("submit", function(event) {
       event.preventDefault();
       emailjs.sendForm("service_kypw3ko", "template_4cmy51i", this)
         .then(() => {
           alert("Your request has been sent successfully!");
-          this.reset();
+          document.getElementById("requestForm").reset();
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("EmailJS Error:", error);
           alert("There was an error sending your request.");
         });
     });
   </script>
 </body>
-</html
+</html>
