@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document Request</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("AEp6caL5vX8Yt2-Ln"); // <-- Replace this
-    })();
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Request Form</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#f5f5f5; padding:20px; }
+  .container { background:#fff; max-width:500px; margin:auto; padding:30px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+  h2 { text-align:center; margin-bottom:20px; }
+  input, select, textarea, button { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; }
+  button { background:#4CAF50; color:#fff; border:none; cursor:pointer; }
+  button:hover { background:#45a049; }
+  #status { text-align:center; color:green; }
+</style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>School Document Request Form</h1>
+<div class="container">
+  <h2>Document Request Form</h2>
+  <form id="requestForm">
+    <input type="text" id="name" name="name" placeholder="Full Name" required>
+    <input type="email" id="email" name="email" placeholder="Email Address" required>
+    <select id="document" name="document" required>
+      <option value="">--Select Document--</option>
+      <option value="Transcript">Transcript</option>
+      <option value="Certificate">Certificate</option>
+      <option value="Recommendation Letter">Recommendation Letter</option>
+    </select>
+    <textarea id="notes" name="notes" rows="4" placeholder="Additional notes..."></textarea>
+    <button type="submit">Submit Request</button>
+  </form>
+  <p id="status"></p>
+</div>
 
-    <form id="requestForm">
-      <input type="text" name="full_name" placeholder="Full Name" required />
-      <input type="text" name="student_id" placeholder="Student ID" required />
-      <input type="email" name="email" placeholder="Your Email" required />
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Replace with your EmailJS User ID
+  emailjs.init("AEp6caL5vX8Yt2-Ln");
 
-      <select name="document_type" required>
-        <option value="">Select Document</option>
-        <option value="Transcript">Transcript</option>
-        <option value="Certificate">Certificate</option>
-        <option value="Enrollment Letter">Enrollment Letter</option>
-      </select>
+  const form = document.getElementById('requestForm');
+  const status = document.getElementById('status');
 
-      <textarea name="additional_info" placeholder="Extra information (if any)"></textarea>
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
 
-      <button type="submit">Submit Request</button>
-    </form>
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      document: form.document.value,
+      notes: form.notes.value
+    };
 
-    <p id="status" style="margin-top: 15px;"></p>
-  </div>
+    console.log("Sending form data:", formData); // Optional: for debugging
 
-  <script>
-    document.getElementById("requestForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const status = document.getElementById("status");
-
-      emailjs.sendForm("service_kypw3ko", "template_4cmy51i", this)
-        .then(() => {
-          status.innerHTML = "Request sent successfully!";
-          status.style.color = "green";
-          this.reset();
-        }, (error) => {
-          status.innerHTML = "Failed to send. Try again.";
-          status.style.color = "red";
-        });
-    });
-  </script>
-
+    emailjs.send('service_kypw3ko', 'template_4cmy51', formData)
+      .then(function(response) {
+        status.style.color = 'green';
+        status.textContent = "Request sent successfully!";
+        form.reset();
+      }, function(error) {
+        status.style.color = 'red';
+        status.textContent = "Failed to send request. Please try again.";
+        console.error("EmailJS error:", error);
+      });
+  });
+</script>
 </body>
 </html>
