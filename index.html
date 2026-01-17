@@ -11,6 +11,20 @@
     button { background: #007bff; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #0056b3; }
     label { font-weight: bold; }
+    .status-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .status-link:hover {
+      background: #1e7e34;
+    }
   </style>
 </head>
 <body>
@@ -18,11 +32,6 @@
 <h2>Student Document Request Form</h2>
 
 <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
-
-  <!-- ✅ Redirect after submit -->
-  <input type="hidden" name="_next"
-        value="https://pginhsrequest.github.io/Thank-you//">
-
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New Student Document Request">
 
@@ -41,13 +50,15 @@
     <option>Others</option>
   </select>
 
-  <textarea name="additional_info"
-            placeholder="Additional Information / Details"
-            rows="4"></textarea>
+  <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
 
   <button type="submit">Send Request</button>
-
 </form>
+
+<!-- Clickable link for students to check their request status -->
+<a class="status-link" href="https://pginhsrequest.github.io/Thank-you/" target="_blank">
+  Check Request Status
+</a>
 
 </body>
 </html>
