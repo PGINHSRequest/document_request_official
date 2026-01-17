@@ -14,37 +14,40 @@
   </style>
 </head>
 <body>
-  <h2>Student Document Request Form</h2>
 
-  <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+<h2>Student Document Request Form</h2>
 
-    <!-- Redirect to thank-you page -->
-    <input type="hidden" name="_next" value="thank-you.html">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="New Student Document Request">
+<form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
 
-    <input type="text" name="student_name" placeholder="Your Name" required />
-    <input type="email" name="student_email" placeholder="Student Email" required />
-    <input type="text" name="student_lrn" placeholder="Student LRN" required />
-    <input type="text" name="grade_section" placeholder="Grade & Section" required />
-    <input type="tel" name="student_phone" placeholder="Phone Number" required />
+  <!-- ✅ Redirect after submit -->
+  <input type="hidden" name="_next"
+        value="https://PGINHSRequest.github.io/thank-you-repo/">
 
-    <label for="document_type">Type of Document:</label>
-    <select name="document_type" id="document_type" required>
-      <option value="">--Select Document--</option>
-      <option value="letter_of_recommendation">Letter of Recommendation</option>
-      <option value="honor_cert">Certificate of Honors</option>
-      <option value="transcript">Transcript of Records</option>
-      <option value="others">Others</option>
-    </select>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New Student Document Request">
 
-    <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
+  <input type="text" name="student_name" placeholder="Your Name" required>
+  <input type="email" name="student_email" placeholder="Student Email" required>
+  <input type="text" name="student_lrn" placeholder="Student LRN" required>
+  <input type="text" name="grade_section" placeholder="Grade & Section" required>
+  <input type="tel" name="student_phone" placeholder="Phone Number" required>
 
-    <!-- Hidden field to include a "Mark as Done" clickable link pointing to the status page -->
-    <input type="hidden" name="mark_as_done" 
-        value="Mark as Done: https://pginhsrequest.github.io/student-request-form/status.html/">
+  <label>Type of Document:</label>
+  <select name="document_type" required>
+    <option value="">--Select Document--</option>
+    <option>Letter of Recommendation</option>
+    <option>Certificate of Honors</option>
+    <option>Transcript of Records</option>
+    <option>Others</option>
+  </select>
 
-    <button type="submit">Send Request</button>
-  </form>
+  <textarea name="additional_info"
+            placeholder="Additional Information / Details"
+            rows="4"></textarea>
+
+  <button type="submit">Send Request</button>
+
+</form>
+
 </body>
 </html>
