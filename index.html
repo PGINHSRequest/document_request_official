@@ -25,19 +25,15 @@
     .status-link:hover {
       background: #1e7e34;
     }
-    .thank-link {
-      display: block;
+    .thank-message {
+      display: none;
       text-align: center;
-      margin-top: 10px;
-      padding: 12px;
+      margin-top: 20px;
+      padding: 15px;
       background: #007bff;
       color: white;
-      text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
-    }
-    .thank-link:hover {
-      background: #0056b3;
     }
   </style>
 </head>
@@ -45,7 +41,11 @@
 
 <h2>Student Document Request Form</h2>
 
-<form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+<div class="thank-message" id="thankMessage">
+  Thank You! Your request has been submitted.
+</div>
+
+<form id="requestForm">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New Student Document Request">
 
@@ -69,12 +69,37 @@
   <button type="submit">Send Request</button>
 </form>
 
-<!-- Clickable Thank You page -->
-<a class="thank-link" href="https://pginhsrequest.github.io/Thank-you/" target="_blank">
-  Thank You Page
+<!-- Status page button -->
+<a class="status-link" href="https://pginhsrequest.github.io/student-request-status/" target="_blank">
+  Check Request Status
 </a>
 
+<script>
+  const form = document.getElementById('requestForm');
+  const thankMessage = document.getElementById('thankMessage');
 
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // prevent page reload
+
+    // Send form to FormSubmit
+    const data = new FormData(form);
+    fetch('https://formsubmit.co/pginhsrequest@gmail.com', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      // Show Thank You message
+      thankMessage.style.display = 'block';
+      // Optionally clear the form
+      form.reset();
+    })
+    .catch(error => {
+      alert('Failed to send request. Please try again.');
+      console.error(error);
+    });
+  });
+</script>
 
 </body>
 </html>
