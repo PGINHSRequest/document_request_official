@@ -2,20 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact Form</title>
+  <title>Student Document Request Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    h2 { text-align: center; }
+    form { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, select, textarea, button { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+    button { background: #007bff; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
 </head>
 <body>
+  <h2>Student Document Request Form</h2>
   <form id="contact-form">
-    <input type="text" name="user_name" placeholder="Your Name" required /><br>
-    <input type="email" name="user_email" placeholder="Student Email" required /><br>
-    <textarea name="user_message" placeholder="Your Message" required></textarea><br>
-    <button type="submit">Send</button>
+    <input type="text" name="student_name" placeholder="Your Name" required />
+    <input type="email" name="student_email" placeholder="Student Email" required />
+    <input type="text" name="student_lrn" placeholder="Student LRN" required />
+    <input type="text" name="grade_section" placeholder="Grade & Section" required />
+
+    <label for="document_type">Type of Document:</label>
+    <select name="document_type" id="document_type" required>
+      <option value="">--Select Document--</option>
+      <option value="good_moral">Good Moral</option>
+      <option value="honor_cert">Certificate of Honors</option>
+      <option value="transcript">Transcript of Records</option>
+      <option value="others">Others</option>
+    </select>
+
+    <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
+    <button type="submit">Send Request</button>
   </form>
 
+  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init('AEp6caL5vX8Yt2-Ln');
+      emailjs.init('AEp6caL5vX8Yt2-Ln'); // Replace with your EmailJS user ID
     })();
 
     const form = document.getElementById('contact-form');
@@ -24,9 +46,10 @@
 
       emailjs.sendForm('service_kypw3ko', 'template_4cmy51i', this)
         .then(function() {
-          alert('Message sent successfully!');
+          alert('Request sent successfully!');
+          form.reset(); // Clear form after submission
         }, function(error) {
-          alert('Failed to send message: ' + JSON.stringify(error));
+          alert('Failed to send request: ' + JSON.stringify(error));
         });
     });
   </script>
