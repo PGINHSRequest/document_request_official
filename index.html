@@ -31,7 +31,7 @@
     <label for="document_type">Type of Document:</label>
     <select name="document_type" id="document_type" required>
       <option value="">--Select Document--</option>
-      <option value="letter_of_reccomendation">Letter of Reccomendation</option>
+      <option value="letter_of_recommendation">Letter of Recommendation</option>
       <option value="honor_cert">Certificate of Honors</option>
       <option value="transcript">Transcript of Records</option>
       <option value="others">Others</option>
@@ -39,9 +39,8 @@
 
     <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
 
-    <a href="mailto:student@example.com?subject=Your%20Document%20Request%20is%20Completed&body=Hello%20Student,%0A%0AYour%20document%20request%20has%20been%20processed.%20You%20may%20now%20claim%20it.%0A%0AThank%20you!">
-      Mark Request as Done
-      </a>
+    <!-- Predefined clickable link in the email -->
+    <input type="hidden" name="view_status_link" value="View Request Status: https://yourgithubusername.github.io/student-request-form/thank-you.html">
 
     <button type="submit">Send Request</button>
   </form>
