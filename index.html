@@ -17,6 +17,7 @@
   <h2>Student Document Request Form</h2>
 
   <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+
     <!-- Redirect to thank-you page -->
     <input type="hidden" name="_next" value="thank-you.html">
     <input type="hidden" name="_captcha" value="false">
@@ -39,9 +40,9 @@
 
     <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
 
-    <!-- Hidden field to include a "Mark as Done" clickable link in the admin email -->
+    <!-- Hidden field to include a "Mark as Done" clickable link pointing to the status page -->
     <input type="hidden" name="mark_as_done" 
-        value="Mark as Done: mailto:student@example.com?subject=Request Completed&body=Hello %0A%0AYour document request has been processed and is now ready.%0A%0AThank you!">
+        value="Mark as Done: https://yourgithubusername.github.io/student-request-form/status.html">
 
     <button type="submit">Send Request</button>
   </form>
