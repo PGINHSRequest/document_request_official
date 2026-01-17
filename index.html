@@ -11,8 +11,18 @@
     button { background: #007bff; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #0056b3; }
     label { font-weight: bold; }
+    .thank-message {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+    }
     .status-link {
-      display: block;
+      display: none;
       text-align: center;
       margin-top: 10px;
       padding: 12px;
@@ -24,16 +34,6 @@
     }
     .status-link:hover {
       background: #1e7e34;
-    }
-    .thank-message {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-      padding: 15px;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -70,13 +70,14 @@
 </form>
 
 <!-- Status page button -->
-<a class="status-link" href="https://pginhsrequest.github.io/student-request-status/" target="_blank">
+<a class="status-link" id="statusLink" href="https://pginhsrequest.github.io/student-request-status/" target="_blank">
   Check Request Status
 </a>
 
 <script>
   const form = document.getElementById('requestForm');
   const thankMessage = document.getElementById('thankMessage');
+  const statusLink = document.getElementById('statusLink');
 
   form.addEventListener('submit', function(e) {
     e.preventDefault(); // prevent page reload
@@ -91,6 +92,8 @@
     .then(response => {
       // Show Thank You message
       thankMessage.style.display = 'block';
+      // Show Status button
+      statusLink.style.display = 'block';
       // Optionally clear the form
       form.reset();
     })
