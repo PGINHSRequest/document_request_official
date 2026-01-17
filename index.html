@@ -11,35 +11,38 @@
     button { background: #007bff; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #0056b3; }
     label { font-weight: bold; }
+    .status-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .status-link:hover {
+      background: #1e7e34;
+    }
+    .thank-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .thank-link:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
 
 <h2>Student Document Request Form</h2>
 
-<form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="New Student Document Request">
-
-  <input type="text" name="student_name" placeholder="Your Name" required>
-  <input type="email" name="student_email" placeholder="Student Email" required>
-  <input type="text" name="student_lrn" placeholder="Student LRN" required>
-  <input type="text" name="grade_section" placeholder="Grade & Section" required>
-  <input type="tel" name="student_phone" placeholder="Phone Number" required>
-
-  <label>Type of Document:</label>
-  <select name="document_type" required>
-    <option value="">--Select Document--</option>
-    <option>Letter of Recommendation</option>
-    <option>Certificate of Honors</option>
-    <option>Transcript of Records</option>
-    <option>Others</option>
-  </select>
-
-  <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
-
-  <button type="submit">Send Request</button>
-</form>
-
-</body>
-</html>
+<form action="https://formsubmit.co/pginhsreq
