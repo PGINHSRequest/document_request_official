@@ -2,29 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Document Request Form</title>
+  <title> PGINHS Student Document Request Form</title>
+
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-    h2 { text-align: center; }
-    form { background: #fff; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, select, textarea, button { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
-    button { background: #007bff; color: #fff; border: none; cursor: pointer; }
-    button:hover { background: #0056b3; }
-    label { font-weight: bold; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0d47a1, #1976d2, #ffd54f);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+
+    form {
+      background: linear-gradient(135deg, #ffffff, #f5f9ff, #fff8e1);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 650px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-top: 6px solid #ffd54f;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #c5cae9;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1976d2;
+      box-shadow: 0 0 5px rgba(25,118,210,0.3);
+    }
+
+    label {
+      font-weight: 600;
+      color: #0d47a1;
+    }
+
+    button {
+      background: linear-gradient(135deg, #1565c0, #ffd54f);
+      color: #0d47a1;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
     .status-link {
       display: block;
       text-align: center;
-      margin-top: 20px;
-      padding: 12px;
-      background: #28a745;
+      margin: 25px auto;
+      padding: 14px;
+      background: linear-gradient(135deg, #1b5e20, #66bb6a);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-weight: bold;
+      max-width: 650px;
+      transition: 0.3s;
     }
+
     .status-link:hover {
-      background: #1e7e34;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
+
   </style>
 </head>
 <body>
@@ -33,7 +92,7 @@
 
 <form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST" enctype="multipart/form-data">
 
-  <!-- ✅ FormSubmit Settings -->
+  <!-- FormSubmit Settings -->
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New Student Document Request">
   <input type="hidden" name="_template" value="table">
@@ -81,10 +140,9 @@
   <option>Others</option>
 </select>
 
-  <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
-  <textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
+<textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
+<textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
 
-<!-- FILE UPLOAD -->
 <label>Attach PDF Form (Optional - Max 5MB):</label>
 <input type="file" id="pdfUpload" name="attachment" accept="application/pdf">
 
@@ -107,7 +165,7 @@ document.getElementById("pdfUpload").addEventListener("change", function () {
 });
 </script>
 
-  <button type="submit">Send Request</button>
+<button type="submit">Send Request</button>
 </form>
 
 <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
