@@ -51,7 +51,7 @@
       color: #0d47a1;
     }
 
-    /* ✅ GOLD-TO-YELLOW GRADIENT BUTTON */
+    /* GOLD-TO-YELLOW GRADIENT BUTTON */
     button {
       background: linear-gradient(135deg, #FFD700, #FFEB3B);
       color: #0d47a1;
@@ -92,12 +92,13 @@
 
 <h2>PGINHS Student Document Request Form</h2>
 
-<form action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+<form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST" enctype="multipart/form-data">
+  <!-- FormSubmit Settings -->
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New Student Document Request">
   <input type="hidden" name="_replyto" value="student_email">
   <input type="hidden" name="_autoresponse" value="Your document request has been successfully submitted to Padre Garcia Integrated National High School. Please wait for further updates regarding your request. Thank you!">
-  
+
   <input type="text" name="first_name" placeholder="First Name" required>
   <input type="text" name="middle_name" placeholder="Middle Name" required>
   <input type="text" name="last_name" placeholder="Last Name" required>
@@ -110,48 +111,45 @@
   <input type="tel" name="student_phone" placeholder="Phone Number" required>
   <input type="text" name="requesting_office" placeholder="Requesting Office (for alumni)" required>
   
-<label>Type of Document:</label>
-<select name="document_type" required>
-  <option value="">--Select Document--</option>
+  <label>Type of Document:</label>
+  <select name="document_type" required>
+    <option value="">--Select Document--</option>
+    <option>Certificate of English as Medium of Instruction</option>
+    <option>Certificate of Enrollment</option>
+    <option>Certificate of General Weighted Average (GWA)</option>
+    <option>Certificate of Graduation</option>
+    <option>Certificate of Grades</option>
+    <option>Certificate of Honors</option>
+    <option>Certificate of No Pending Case</option>
+    <option>Certificate of Ranking</option>
+    <option>Certificate of Units Earned</option>
+    <option>Certified True Copy of Diploma</option>
+    <option>Certified True Copy of Records</option>
+    <option>Course Description</option>
+    <option>Diploma</option>
+    <option>Expected Date of Graduation</option>
+    <option>Form 137 / Permanent Record (SF10)</option>
+    <option>Form 138 / Report Card</option>
+    <option>Grading System Certification</option>
+    <option>Honorable Dismissal / Transfer Credentials</option>
+    <option>Letter of Recommendation</option>
+    <option>Permit to Transfer</option>
+    <option>Transcript of Records (TOR)</option>
+    <option>Verification / Authentication (CAV)</option>
+    <option>Others</option>
+  </select>
 
-  <option>Certificate of English as Medium of Instruction</option>
-  <option>Certificate of Enrollment</option>
-  <option>Certificate of General Weighted Average (GWA)</option>
-  <option>Certificate of Graduation</option>
-  <option>Certificate of Grades</option>
-  <option>Certificate of Honors</option>
-  <option>Certificate of No Pending Case</option>
-  <option>Certificate of Ranking</option>
-  <option>Certificate of Units Earned</option>
-  <option>Certified True Copy of Diploma</option>
-  <option>Certified True Copy of Records</option>
-  <option>Course Description</option>
-  <option>Diploma</option>
-  <option>Expected Date of Graduation</option>
-  <option>Form 137 / Permanent Record (SF10)</option>
-  <option>Form 138 / Report Card</option>
-  <option>Grading System Certification</option>
-  <option>Honorable Dismissal / Transfer Credentials</option>
-  <option>Letter of Recommendation</option>
-  <option>Permit to Transfer</option>
-  <option>Transcript of Records (TOR)</option>
-  <option>Verification / Authentication (CAV)</option>
-  <option>Others</option>
-</select>
+  <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
+  <textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
 
-<textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
-<textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
+  <label>Attach PDF Form (Optional - Max 5MB):</label>
+  <input type="file" id="pdfUpload" name="attachment" accept="application/pdf">
 
-<label>Attach PDF Form (Optional - Max 5MB):</label>
-<input type="file" id="pdfUpload" name="attachment" accept="application/pdf">
-
-<button type="submit">Send Request</button>
+  <button type="submit">Send Request</button>
 </form>
 
 <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
   Go back to Homepage
-</a>
-
 </a>
 
 <!-- EmailJS Integration -->
