@@ -171,5 +171,25 @@ document.getElementById("pdfUpload").addEventListener("change", function () {
   Go back to Homepage
 </a>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("AEp6caL5vX8Yt2-Ln"); // Replace with your EmailJS public key
+
+  document.getElementById("requestForm").addEventListener("submit", function(event) {
+    // Prevent default submission for EmailJS first
+    event.preventDefault();
+
+    // Send email via EmailJS
+    emailjs.sendForm('service_kypw3ko', 'template_5gra4yf', this)
+      .then(function() {
+        console.log('EmailJS: Auto-reply sent!');
+        // Then submit to FormSubmit
+        event.target.submit();
+      }, function(error) {
+        console.error('EmailJS error:', error);
+        // Still submit to FormSubmit even if EmailJS fails
+        event.target.submit();
+      });
+  });
 </body>
 </html>
