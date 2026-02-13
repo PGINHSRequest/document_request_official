@@ -19,7 +19,6 @@
       margin-bottom: 25px;
     }
 
-    /* LIGHT BLUE PROFESSIONAL FORM */
     form {
       background: linear-gradient(145deg, #e3f2fd, #f1f8ff);
       padding: 30px;
@@ -51,7 +50,6 @@
       color: #0d47a1;
     }
 
-    /* GOLD-TO-YELLOW GRADIENT BUTTON */
     button {
       background: linear-gradient(135deg, #FFD700, #FFEB3B);
       color: #0d47a1;
@@ -85,7 +83,6 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
-
   </style>
 </head>
 <body>
@@ -93,7 +90,7 @@
 <h2>PGINHS Student Document Request Form</h2>
 
 <form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST" enctype="multipart/form-data">
-  <!-- FormSubmit Settings -->
+
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New Student Document Request">
   <input type="hidden" name="_replyto" value="student_email">
@@ -110,38 +107,20 @@
   <input type="text" name="year_graduated" placeholder="Year Graduated (if alumni)">
   <input type="tel" name="student_phone" placeholder="Phone Number" required>
   <input type="text" name="requesting_office" placeholder="Requesting Office (for alumni)" required>
-  
+
   <label>Type of Document:</label>
   <select name="document_type" required>
     <option value="">--Select Document--</option>
-    <option>Certificate of English as Medium of Instruction</option>
     <option>Certificate of Enrollment</option>
-    <option>Certificate of General Weighted Average (GWA)</option>
-    <option>Certificate of Graduation</option>
     <option>Certificate of Grades</option>
-    <option>Certificate of Honors</option>
-    <option>Certificate of No Pending Case</option>
-    <option>Certificate of Ranking</option>
-    <option>Certificate of Units Earned</option>
-    <option>Certified True Copy of Diploma</option>
-    <option>Certified True Copy of Records</option>
-    <option>Course Description</option>
-    <option>Diploma</option>
-    <option>Expected Date of Graduation</option>
-    <option>Form 137 / Permanent Record (SF10)</option>
-    <option>Form 138 / Report Card</option>
-    <option>Grading System Certification</option>
-    <option>Honorable Dismissal / Transfer Credentials</option>
-    <option>Letter of Recommendation</option>
-    <option>Permit to Transfer</option>
     <option>Transcript of Records (TOR)</option>
-    <option>Verification / Authentication (CAV)</option>
+    <option>Diploma</option>
     <option>Others</option>
   </select>
 
   <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
-  <textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
-  
+  <textarea name="purpose_of_request" placeholder="Purpose of the Request" required rows="4"></textarea>
+
   <button type="submit">Send Request</button>
 </form>
 
@@ -149,28 +128,35 @@
   Go back to Homepage
 </a>
 
-<!-- EmailJS Integration -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  emailjs.init("AEp6caL5vX8Yt2-Ln"); // Replace with your EmailJS public key
+  emailjs.init("AEp6caL5vX8Yt2-Ln");
 
   document.getElementById("requestForm").addEventListener("submit", function(event) {
-    // Prevent default submission for EmailJS first
     event.preventDefault();
+    const form = this;
 
-    // Send email via EmailJS
-    emailjs.sendForm('service_kypw3ko', 'template_5gra4yf', this)
+    // SEND TO ADMIN
+    emailjs.sendForm('service_kypw3ko', 'template_5gra4yf', form)
       .then(function() {
-        console.log('EmailJS: Auto-reply sent!');
-        // Then submit to FormSubmit
-        event.target.submit();
+        console.log('Admin email sent!');
       }, function(error) {
-        console.error('EmailJS error:', error);
-        // Still submit to FormSubmit even if EmailJS fails
-        event.target.submit();
+        console.error('Admin email error:', error);
       });
-  });
 
+    // SEND AUTO-REPLY TO STUDENT
+    emailjs.sendForm('service_kypw3ko', 'template_auto_reply_pginhs', form)
+      .then(function() {
+        console.log('Student auto-reply sent!');
+      }, function(error) {
+        console.error('Auto-reply error:', error);
+      });
+
+    // Submit to FormSubmit after emails
+    setTimeout(function(){
+      form.submit();
+    },1000);
+  });
 </script>
 
 </body>
