@@ -1,179 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PGINHS Student Document Request Form</title>
+<meta charset="UTF-8">
+<title>PGINHS Student Document Request Form</title>
 
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d47a1, #1976d2, #ffd54f);
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0d47a1, #1976d2, #ffd54f);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
 
-    h2 {
-      text-align: center;
-      color: white;
-      letter-spacing: 1px;
-      margin-bottom: 25px;
-    }
+h2 {
+  text-align: center;
+  color: white;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
 
-    /* LIGHT BLUE PROFESSIONAL FORM */
-    form {
-      background: linear-gradient(145deg, #e3f2fd, #f1f8ff);
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 650px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border-top: 6px solid #64b5f6;
-    }
+form {
+  background: linear-gradient(145deg, #e3f2fd, #f1f8ff);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 650px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-top: 6px solid #64b5f6;
+}
 
-    input, select, textarea, button {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #bbdefb;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
+input, select, textarea, button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #bbdefb;
+  box-sizing: border-box;
+  font-size: 14px;
+}
 
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #1e88e5;
-      box-shadow: 0 0 6px rgba(30,136,229,0.3);
-    }
+button {
+  background: linear-gradient(135deg, #FFD700, #FFEB3B);
+  color: #0d47a1;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
 
-    label {
-      font-weight: 600;
-      color: #0d47a1;
-    }
+.status-link {
+  display: block;
+  text-align: center;
+  margin: 25px auto;
+  padding: 14px;
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  max-width: 650px;
+}
 
-    /* GOLD-TO-YELLOW GRADIENT BUTTON */
-    button {
-      background: linear-gradient(135deg, #FFD700, #FFEB3B);
-      color: #0d47a1;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 16px;
-    }
+/* LOGIN MODAL */
+#loginModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
+.modal-box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:350px;
+text-align:center;
+}
 
-    .status-link {
-      display: block;
-      text-align: center;
-      margin: 25px auto;
-      padding: 14px;
-      background: linear-gradient(135deg, #1565c0, #42a5f5);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      max-width: 650px;
-      transition: 0.3s;
-    }
-
-    .status-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-
-  </style>
+</style>
 </head>
 <body>
 
 <h2>PGINHS Student Document Request Form</h2>
 
-<form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST" enctype="multipart/form-data">
-  <!-- FormSubmit Settings -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="New Student Document Request">
-  <input type="hidden" name="_replyto" value="student_email">
-  <input type="hidden" name="_autoresponse" value="Your document request has been successfully submitted to Padre Garcia Integrated National High School. Please wait for further updates regarding your request. Thank you!">
+<form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
 
-  <input type="text" name="first_name" placeholder="First Name" required>
-  <input type="text" name="middle_name" placeholder="Middle Name" required>
-  <input type="text" name="last_name" placeholder="Last Name" required>
-  <input type="text" name="student_address" placeholder="Address" required>
-  <input type="text" name="student_sex" placeholder="Sex" required>
-  <input type="email" name="student_email" placeholder="Student Email" required>
-  <input type="text" name="student_lrn" placeholder="Student LRN" required>
-  <input type="text" name="grade_section" placeholder="Grade & Section" required>
-  <input type="text" name="year_graduated" placeholder="Year Graduated (if alumni)">
-  <input type="tel" name="student_phone" placeholder="Phone Number" required>
-  <input type="text" name="requesting_office" placeholder="Requesting Office (for alumni)" required>
-  <input type="text" name="tracking_code" placeholder="Tracking Code" required>
-  
-  <label>Type of Document:</label>
-  <select name="document_type" required>
-    <option value="">--Select Document--</option>
-    <option>Certificate of English as Medium of Instruction</option>
-    <option>Certificate of Enrollment</option>
-    <option>Certificate of General Weighted Average (GWA)</option>
-    <option>Certificate of Graduation</option>
-    <option>Certificate of Grades</option>
-    <option>Certificate of Honors</option>
-    <option>Certificate of No Pending Case</option>
-    <option>Certificate of Ranking</option>
-    <option>Certificate of Units Earned</option>
-    <option>Certified True Copy of Diploma</option>
-    <option>Certified True Copy of Records</option>
-    <option>Course Description</option>
-    <option>Diploma</option>
-    <option>Expected Date of Graduation</option>
-    <option>Form 137 / Permanent Record (SF10)</option>
-    <option>Form 138 / Report Card</option>
-    <option>Grading System Certification</option>
-    <option>Honorable Dismissal / Transfer Credentials</option>
-    <option>Letter of Recommendation</option>
-    <option>Permit to Transfer</option>
-    <option>Transcript of Records (TOR)</option>
-    <option>Verification / Authentication (CAV)</option>
-    <option>Others</option>
-  </select>
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New Student Document Request">
+<input type="hidden" name="_replyto" value="student_email">
 
-  <textarea name="additional_info" placeholder="Additional Information / Details" rows="4"></textarea>
-  <textarea name="Purpose of the request" placeholder="Purpose of the Request" required rows="4"></textarea>
+<input type="text" name="first_name" placeholder="First Name" required>
+<input type="text" name="middle_name" placeholder="Middle Name" required>
+<input type="text" name="last_name" placeholder="Last Name" required>
+<input type="text" name="student_address" placeholder="Address" required>
+<input type="text" name="student_sex" placeholder="Sex" required>
 
-  <a class="status-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdioEUSx0ewG7ctsIQU2kKJojM7psuOITkX71Lj6oI24o-ilw/viewform?usp=dialog" target="_blank" required>
-  Form for Tracking your Document
-</a>
-    <button type="submit">Send Request</button>
+<input id="studentEmail" type="email" name="student_email" placeholder="Student Email" required>
+
+<input type="text" name="student_lrn" placeholder="Student LRN" required>
+<input type="text" name="grade_section" placeholder="Grade & Section" required>
+<input type="text" name="year_graduated" placeholder="Year Graduated (if alumni)">
+<input type="tel" name="student_phone" placeholder="Phone Number" required>
+<input type="text" name="requesting_office" placeholder="Requesting Office (for alumni)" required>
+<input type="text" name="tracking_code" placeholder="Tracking Code" required>
+
+<label>Type of Document:</label>
+<select name="document_type" required>
+<option value="">--Select Document--</option>
+<option>Certificate of Enrollment</option>
+<option>Certificate of Graduation</option>
+<option>Certificate of Grades</option>
+<option>Transcript of Records (TOR)</option>
+<option>Form 137 / Permanent Record (SF10)</option>
+<option>Others</option>
+</select>
+
+<textarea name="additional_info" placeholder="Additional Information"></textarea>
+<textarea name="purpose" placeholder="Purpose of the Request" required></textarea>
+
+<button type="submit">Send Request</button>
 </form>
 
-<a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
-  Go back to Homepage
-</a>
 
-<!-- EmailJS Integration -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!-- LOGIN POPUP -->
+<div id="loginModal">
+  <div class="modal-box">
+    <h3>Student Login Required</h3>
+
+    <input id="loginEmail" type="email" placeholder="Email">
+    <input id="loginPassword" type="password" placeholder="Password">
+
+    <button onclick="loginAndSubmit()">Login & Submit</button>
+    <button onclick="closeModal()">Cancel</button>
+
+    <p id="loginError" style="color:red;"></p>
+  </div>
+</div>
+
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
 <script>
-  emailjs.init("AEp6caL5vX8Yt2-Ln"); // Replace with your EmailJS public key
+const firebaseConfig = {
+  apiKey: "AIzaSyAal-tUtavmqhKDGfY5ETXTanvBoieN304",
+  authDomain: "student-document-request-4cd93.firebaseapp.com",
+  projectId: "student-document-request-4cd93",
+};
 
-  document.getElementById("requestForm").addEventListener("submit", function(event) {
-    // Prevent default submission for EmailJS first
-    event.preventDefault();
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+</script>
 
-    // Send email via EmailJS
-    emailjs.sendForm('service_kypw3ko', 'template_5gra4yf', this)
-      .then(function() {
-        console.log('EmailJS: Auto-reply sent!');
-        // Then submit to FormSubmit
-        event.target.submit();
-      }, function(error) {
-        console.error('EmailJS error:', error);
-        // Still submit to FormSubmit even if EmailJS fails
-        event.target.submit();
-      });
-  });
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("AEp6caL5vX8Yt2-Ln");
+
+let formToSubmit;
+
+// STOP normal submit
+document.getElementById("requestForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    formToSubmit = this;
+    document.getElementById("loginModal").style.display="flex";
+});
+
+function closeModal(){
+  document.getElementById("loginModal").style.display="none";
+}
+
+
+// FIREBASE LOGIN
+function loginAndSubmit(){
+
+const email = document.getElementById("loginEmail").value;
+const password = document.getElementById("loginPassword").value;
+const errorText = document.getElementById("loginError");
+
+auth.signInWithEmailAndPassword(email, password)
+
+.then(()=>{
+
+    // Autofill verified email
+    document.getElementById("studentEmail").value = email;
+
+    closeModal();
+
+    // send emailjs first
+    emailjs.sendForm('service_kypw3ko','template_5gra4yf',formToSubmit)
+    .then(()=>{
+        formToSubmit.submit();
+    })
+    .catch(()=>{
+        formToSubmit.submit();
+    });
+
+})
+
+.catch(()=>{
+    errorText.innerText="Invalid email or password!";
+});
+
+}
 
 </script>
 
