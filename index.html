@@ -122,9 +122,17 @@ text-align:center;
 
 <textarea name="additional_info" placeholder="Additional Information"></textarea>
 <textarea name="purpose" placeholder="Purpose of the Request" required></textarea>
+  
+  <a class="status-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdioEUSx0ewG7ctsIQU2kKJojM7psuOITkX71Lj6oI24o-ilw/viewform?usp=dialog" target="_blank" required>
+  Form for Tracking your Document
+</a>
 
 <button type="submit">Send Request</button>
 </form>
+  
+  <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
+  Go back to Homepage
+</a>
 
 
 <!-- LOGIN POPUP -->
@@ -202,6 +210,66 @@ auth.signInWithEmailAndPassword(email, password)
         formToSubmit.submit();
     })
     .catch(()=>{
+        formToSubmit.submit();
+    });
+
+})
+
+.catch(()=>{
+    errorText.innerText="Invalid email or password!";
+});
+
+}
+
+</script>
+  <!-- EmailJS Integration -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+emailjs.init("AEp6caL5vX8Yt2-Ln");
+
+let formToSubmit;
+
+// Intercept form → show login popup
+document.getElementById("requestForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    formToSubmit = this;
+    document.getElementById("loginModal").style.display="flex";
+});
+
+function closeModal(){
+  document.getElementById("loginModal").style.display="none";
+}
+
+
+// LOGIN → THEN EMAILJS → THEN FORMSUBMIT
+function loginAndSubmit(){
+
+const email = document.getElementById("loginEmail").value;
+const password = document.getElementById("loginPassword").value;
+const errorText = document.getElementById("loginError");
+
+auth.signInWithEmailAndPassword(email, password)
+
+.then(()=>{
+
+    // autofill verified email
+    document.getElementById("studentEmail").value = email;
+
+    closeModal();
+
+    // Send EmailJS first
+    emailjs.sendForm('service_kypw3ko','template_5gra4yf',formToSubmit)
+    .then(()=>{
+        console.log("EmailJS sent!");
+
+        // Then submit normally to FormSubmit
+        formToSubmit.submit();
+    })
+    .catch((error)=>{
+        console.log("EmailJS error:", error);
+
+        // Still allow submission
         formToSubmit.submit();
     });
 
