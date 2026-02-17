@@ -94,7 +94,22 @@ text-align:center;
 <input id="studentEmail" type="email" name="student_email" placeholder="Student Email" required>
 
 <input type="text" name="student_lrn" placeholder="Student LRN" required>
-<input type="text" name="grade_section" placeholder="Grade & Section" required>
+
+<label> Grade Level: </label>
+<select name="grade_level" required>
+<option value="">--Select Grade Level--</option>
+<option value="Grade 7">Grade 7</option>
+<option value="Grade 8">Grade 8</option>
+<option value="Grade 9">Grade 9</option>
+<option value="Grade 10">Grade 10</option>
+<option value="Grade 11">Grade 11</option>
+<option value="Grade 12">Grade 12</option>
+<option value="Alumni of PGINHS">Alumni of PGINHS</option>
+</select>
+
+<textarea name="additional-info" placeholder="If Grade 7 student, please add your full name and relationship with the student" required></textarea>
+  
+<input type="text" name="section" placeholder="Section" required>
 <input type="tel" name="student_phone" placeholder="Phone Number" required>
 <input type="text" name="tracking_code" placeholder="Tracking Code" required>
 
