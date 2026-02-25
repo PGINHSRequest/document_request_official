@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <title>PGINHS Student Document Request Form</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Futuristic font */
-
 body {
     font-family: 'Segoe UI', sans-serif;
     background: #0a1f44; /* Dark blue background */
@@ -29,19 +27,15 @@ form {
     position: relative;
 }
 
-/* Futuristic highlighted title */
+/* Simple highlighted title */
 form h2 {
-    font-family: 'Orbitron', sans-serif;
     text-align: center;
-    margin-bottom: 30px;
-    padding: 15px;
-    background: linear-gradient(90deg, #FFA500, #FFD700);
-    border-radius: 15px;
+    background: #FFD700; /* Gold highlight */
+    padding: 10px;
+    border-radius: 12px;
     color: #0a1f44;
-    font-weight: 900;
-    font-size: 28px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255,165,0,0.8), 0 0 20px rgba(255,215,0,0.6);
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
 /* Inputs, selects, textareas */
@@ -92,7 +86,7 @@ button:hover {
     background: linear-gradient(45deg, #FFD700, #FFA500);
 }
 
-/* Login modal */
+/* LOGIN MODAL */
 #loginModal {
     display: none;
     position: fixed;
@@ -127,14 +121,14 @@ button:hover {
 @media screen and (max-width: 400px){
     form { padding: 30px 15px 20px 15px; }
     input, button { padding: 12px; font-size: 14px; }
-    form h2 { font-size: 22px; padding: 10px; }
+    form h2 { font-size: 20px; padding: 8px; }
 }
 </style>
 </head>
 <body>
 
 <form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
-    <h2>PGINHS Student Document Request</h2>
+    <h2>PGINHS Student Document Request Form</h2>
     
     <input type="hidden" name="_captcha" value="false">
     <input type="text" name="first_name" placeholder="First Name" required>
