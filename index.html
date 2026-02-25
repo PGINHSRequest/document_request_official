@@ -9,22 +9,20 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
 <style>
-/* Body with dark blue background and stars */
+/* BODY & BACKGROUND */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  overflow-y: auto; /* allow scrolling */
   background: #0a1f44;
-  overflow: hidden;
   position: relative;
+  padding: 40px 0;
 }
 
-/* Stars layer */
+/* Stars */
 .stars {
-  position: absolute;
+  position: fixed; /* stays in background while scrolling */
   width: 200%;
   height: 200%;
   background: transparent;
@@ -40,7 +38,7 @@ body {
   opacity: 0.8;
 }
 
-/* Form container */
+/* FORM CONTAINER */
 .form-container {
   position: relative;
   z-index: 1;
@@ -51,12 +49,10 @@ body {
   width: 90%;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   color: #0a1f44;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 20px auto; /* center horizontally with spacing */
 }
 
-/* Title */
+/* TITLE */
 h2 {
   font-size: 28px;
   font-weight: bold;
@@ -65,7 +61,7 @@ h2 {
   color: #0a1f44;
 }
 
-/* Inputs, selects, textarea */
+/* INPUTS, SELECTS, TEXTAREAS */
 input, select, textarea {
   width: 90%;
   padding: 14px;
@@ -75,7 +71,7 @@ input, select, textarea {
   font-size: 16px;
 }
 
-/* Buttons */
+/* BUTTONS */
 button {
   width: 90%;
   padding: 14px;
@@ -95,7 +91,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Status links */
+/* STATUS LINKS */
 .status-link {
   display: block;
   text-align: center;
@@ -146,9 +142,10 @@ button:hover {
 </head>
 <body>
 
-<!-- Stars -->
+<!-- STARS -->
 <div class="stars" id="starsContainer"></div>
 
+<!-- FORM -->
 <div class="form-container">
   <h2>PGINHS Student Document Request Form</h2>
 
@@ -175,7 +172,7 @@ button:hover {
       <option value="Alumni of PGINHS">Alumni of PGINHS</option>
     </select>
 
-    <textarea name="additional-info" placeholder="If Grade 7 student, add your full name & relationship. Else, N/A." required></textarea>
+    <textarea name="additional-info" placeholder="If Grade 7 student, add full name & relationship. Else, N/A." required></textarea>
 
     <input type="text" name="section" placeholder="Section" required>
     <input type="tel" name="student_phone" placeholder="Phone Number" required>
@@ -229,8 +226,9 @@ button:hover {
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-// Generate stars dynamically
+// STARS GENERATOR
 const starsContainer = document.getElementById("starsContainer");
 const starCount = 200;
 for (let i = 0; i < starCount; i++) {
@@ -244,7 +242,7 @@ for (let i = 0; i < starCount; i++) {
   starsContainer.appendChild(star);
 }
 
-// Firebase
+// FIREBASE
 const firebaseConfig = {
   apiKey:"AIzaSyAal-tUtavmqhKDGfY5ETXTanvBoieN304",
   authDomain:"student-document-request-4cd93.firebaseapp.com",
@@ -253,7 +251,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// EmailJS
+// EMAILJS
 emailjs.init("AEp6caL5vX8Yt2-Ln");
 
 let formToSubmit;
@@ -283,7 +281,5 @@ function loginAndSubmit(){
     .catch(err=>{ error.innerText = err.message; });
 }
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </body>
 </html>
