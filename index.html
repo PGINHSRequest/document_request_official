@@ -20,7 +20,7 @@ body {
   padding: 40px 0;
 }
 
-/* Stars */
+/* STARS BACKGROUND */
 .stars {
   position: fixed; /* stays in background while scrolling */
   width: 200%;
@@ -49,7 +49,7 @@ body {
   width: 90%;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   color: #0a1f44;
-  margin: 20px auto; /* center horizontally with spacing */
+  margin: 20px auto; /* center horizontally */
 }
 
 /* TITLE */
@@ -75,7 +75,6 @@ input, select, textarea {
 button {
   width: 90%;
   padding: 14px;
-  margin-top: 12px;
   font-size: 16px;
   border: none;
   border-radius: 10px;
@@ -95,13 +94,27 @@ button:hover {
 .status-link {
   display: block;
   text-align: center;
-  margin: 20px auto;
   padding: 14px;
   background: #1565c0;
   color: white;
   text-decoration: none;
   border-radius: 8px;
   width: 90%;
+  font-weight: bold;
+}
+
+/* BUTTONS CONTAINER */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.buttons-container button,
+.buttons-container .status-link {
+  margin: 8px 0;
 }
 
 /* LOGIN MODAL */
@@ -130,9 +143,10 @@ button:hover {
     width: 95%;
     padding: 40px 20px;
   }
-  input, select, textarea, button {
+  input, select, textarea, button, .status-link {
     font-size: 18px;
     padding: 16px;
+    width: 95%;
   }
   h2 {
     font-size: 26px;
@@ -202,16 +216,18 @@ button:hover {
     <textarea name="additional-info-2" placeholder="Additional information regarding your request" required></textarea>
     <textarea name="purpose" placeholder="Purpose of the Request" required></textarea>
 
+    <!-- BUTTONS WRAPPER -->
+    <div class="buttons-container">
+      <button type="submit">Send Request</button>
+      <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
+        Go back to Homepage
+      </a>
+    </div>
+
     <a class="status-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdioEUSx0ewG7ctsIQU2kKJojM7psuOITkX71Lj6oI24o-ilw/viewform?usp=dialog" target="_blank">
       Form for Tracking your Document
     </a>
-
-    <button type="submit">Send Request</button>
   </form>
-
-  <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
-    Go back to Homepage
-  </a>
 </div>
 
 <!-- LOGIN MODAL -->
