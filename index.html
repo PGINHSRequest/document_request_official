@@ -67,11 +67,29 @@ button:hover {
     background: linear-gradient(45deg, #8AC4E9, #FFF1A8);
 }
 
-/* Homepage button below the form box */
+/* Tracking form button below the form box */
+.status-link {
+    display: block;
+    text-align: center;
+    margin: 15px auto 10px auto;
+    padding: 14px;
+    background: linear-gradient(45deg, #FFA500, #FFD700);
+    color: #0a1f44;
+    text-decoration: none;
+    border-radius: 12px;
+    max-width: 650px;
+    font-weight: bold;
+    transition: all 0.25s ease;
+}
+.status-link:hover {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+/* Homepage button below the tracking button */
 .homepage-link {
     display: block;
     text-align: center;
-    margin: 20px auto 0 auto;
+    margin: 10px auto 0 auto;
     padding: 14px;
     background: linear-gradient(45deg, #FFA500, #FFD700);
     color: #0a1f44;
@@ -183,7 +201,12 @@ button:hover {
     <button type="submit">Send Request</button>
 </form>
 
-<!-- Homepage button below the form box -->
+<!-- Tracking form button below the form -->
+<a class="status-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdioEUSx0ewG7ctsIQU2kKJojM7psuOITkX71Lj6oI24o-ilw/viewform?usp=dialog" target="_blank">
+    Form for Tracking your Document
+</a>
+
+<!-- Homepage button below the tracking button -->
 <a class="homepage-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
     Go back to Homepage
 </a>
