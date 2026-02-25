@@ -27,15 +27,14 @@ form {
     position: relative;
 }
 
-/* Simple highlighted title */
+/* Simple professional title */
 form h2 {
     text-align: center;
-    background: #FFD700; /* Gold highlight */
-    padding: 10px;
-    border-radius: 12px;
-    color: #0a1f44;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 30px;
+    color: #0a1f44;
+    margin-bottom: 25px;
 }
 
 /* Inputs, selects, textareas */
@@ -121,7 +120,7 @@ button:hover {
 @media screen and (max-width: 400px){
     form { padding: 30px 15px 20px 15px; }
     input, button { padding: 12px; font-size: 14px; }
-    form h2 { font-size: 20px; padding: 8px; }
+    form h2 { font-size: 20px; }
 }
 </style>
 </head>
@@ -129,7 +128,7 @@ button:hover {
 
 <form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
     <h2>PGINHS Student Document Request Form</h2>
-    
+
     <input type="hidden" name="_captcha" value="false">
     <input type="text" name="first_name" placeholder="First Name" required>
     <input type="text" name="middle_name" placeholder="Middle Name" required>
@@ -138,7 +137,7 @@ button:hover {
     <input type="text" name="student_sex" placeholder="Sex" required>
     <input id="studentEmail" type="email" name="student_email" placeholder="Student Email" required>
     <input type="text" name="student_lrn" placeholder="Student LRN" required>
-    
+
     <label>Grade Level:</label>
     <select name="grade_level" required>
         <option value="">--Select Grade Level--</option>
