@@ -3,169 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <title>PGINHS Student Document Request Form</title>
-
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
 <style>
-/* BODY & BACKGROUND */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  overflow-y: auto; /* allow scrolling */
-  background: #0a1f44;
-  position: relative;
-  padding: 40px 0;
+    font-family: 'Segoe UI', sans-serif;
+    /* Sky to deep blue gradient */
+    background: linear-gradient(to bottom, #87CEEB, #0D47A1);
+    min-height: 100vh;
+    padding: 40px 20px;
+    margin: 0;
 }
 
-/* STARS BACKGROUND */
-.stars {
-  position: fixed; /* stays in background while scrolling */
-  width: 200%;
-  height: 200%;
-  background: transparent;
-  z-index: 0;
-  pointer-events: none;
-}
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #a0c4ff;
-  border-radius: 50%;
-  opacity: 0.8;
-}
-
-/* FORM CONTAINER */
-.form-container {
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(135deg,#87CEFA,#FFF47F);
-  border-radius: 20px;
-  padding: 40px 30px;
-  max-width: 700px;
-  width: 90%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  color: #0a1f44;
-  margin: 20px auto; /* center horizontally */
-}
-
-/* TITLE */
 h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #0a1f44;
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
 }
 
-/* INPUTS, SELECTS, TEXTAREAS */
-input, select, textarea {
-  width: 90%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  border: 1px solid #0a1f44;
-  font-size: 16px;
+form {
+    background: #e3f2fd;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 650px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
 }
 
-/* BUTTONS */
+input, select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #bbdefb;
+    box-sizing: border-box;
+}
+
 button {
-  width: 90%;
-  padding: 14px;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #87CEFA, #00BFFF);
-  color: #0a1f44;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: all 0.2s ease;
+    background: linear-gradient(135deg,#FFD700,#FFEB3B);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
+
 button:hover {
-  background: linear-gradient(45deg, #00BFFF, #1E90FF);
-  transform: translateY(-2px);
+    opacity: 0.9;
 }
 
-/* STATUS LINKS */
 .status-link {
-  display: block;
-  text-align: center;
-  padding: 14px;
-  background: #1565c0;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  width: 90%;
-  font-weight: bold;
-}
-
-/* BUTTONS CONTAINER */
-.buttons-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.buttons-container button,
-.buttons-container .status-link {
-  margin: 8px 0;
+    display: block;
+    text-align: center;
+    margin: 25px auto;
+    padding: 14px;
+    background: #1565c0;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    max-width: 650px;
 }
 
 /* LOGIN MODAL */
 #loginModal {
-  display: none;
-  position: fixed;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,.7);
-  justify-content: center;
-  align-items: center;
-}
-.modal-box {
-  background:white;
-  padding: 30px;
-  border-radius: 10px;
-  width: 350px;
-  text-align: center;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    justify-content: center;
+    align-items: center;
 }
 
-/* MOBILE RESPONSIVE */
-@media screen and (max-width: 600px) {
-  .form-container {
-    width: 95%;
-    padding: 40px 20px;
-  }
-  input, select, textarea, button, .status-link {
-    font-size: 18px;
-    padding: 16px;
-    width: 95%;
-  }
-  h2 {
-    font-size: 26px;
-  }
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
 }
 </style>
 </head>
 <body>
 
-<!-- STARS -->
-<div class="stars" id="starsContainer"></div>
+<h2>PGINHS Student Document Request Form</h2>
 
-<!-- FORM -->
-<div class="form-container">
-  <h2>PGINHS Student Document Request Form</h2>
-
-  <form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+<form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
     <input type="hidden" name="_captcha" value="false">
-
     <input type="text" name="first_name" placeholder="First Name" required>
     <input type="text" name="middle_name" placeholder="Middle Name" required>
     <input type="text" name="last_name" placeholder="Last Name" required>
@@ -173,129 +96,124 @@ button:hover {
     <input type="text" name="student_sex" placeholder="Sex" required>
     <input id="studentEmail" type="email" name="student_email" placeholder="Student Email" required>
     <input type="text" name="student_lrn" placeholder="Student LRN" required>
-
+    
     <label>Grade Level:</label>
     <select name="grade_level" required>
-      <option value="">--Select Grade Level--</option>
-      <option value="Grade 7">Grade 7</option>
-      <option value="Grade 8">Grade 8</option>
-      <option value="Grade 9">Grade 9</option>
-      <option value="Grade 10">Grade 10</option>
-      <option value="Grade 11">Grade 11</option>
-      <option value="Grade 12">Grade 12</option>
-      <option value="Alumni of PGINHS">Alumni of PGINHS</option>
+        <option value="">--Select Grade Level--</option>
+        <option value="Grade 7">Grade 7</option>
+        <option value="Grade 8">Grade 8</option>
+        <option value="Grade 9">Grade 9</option>
+        <option value="Grade 10">Grade 10</option>
+        <option value="Grade 11">Grade 11</option>
+        <option value="Grade 12">Grade 12</option>
+        <option value="Alumni of PGINHS">Alumni of PGINHS</option>
     </select>
 
-    <textarea name="additional-info" placeholder="If Grade 7 student, add full name & relationship. Else, N/A." required></textarea>
-
+    <textarea name="grade7_info" placeholder="If Grade 7 student, please add your full name and relationship with the student. If not, put N/A." required></textarea>
+    
     <input type="text" name="section" placeholder="Section" required>
     <input type="tel" name="student_phone" placeholder="Phone Number" required>
     <input type="text" name="tracking_code" placeholder="Tracking Code" required>
-
+    
     <label>Type of Document:</label>
     <select name="document_type" required>
-      <option value="">--Select Document--</option>
-      <option value="Certificate of Enrollment">Certificate of Enrollment</option>
-      <option value="Certificate of General Weighted Average (GWA)">Certificate of General Weighted Average (GWA)</option>
-      <option value="Certificate of Graduation">Certificate of Graduation</option>
-      <option value="Certificate of Grades">Certificate of Grades</option>
-      <option value="Certificate of Honors">Certificate of Honors</option>
-      <option value="Certificate of No Pending Case">Certificate of No Pending Case</option>
-      <option value="Certificate of Ranking">Certificate of Ranking</option>
-      <option value="Certified True Copy of Diploma">Certified True Copy of Diploma</option>
-      <option value="Certified True Copy of Records">Certified True Copy of Records</option>
-      <option value="Form 137 / Permanent Record (SF10)">Form 137 / Permanent Record (SF10)</option>
-      <option value="Honorable Dismissal / Transfer Credentials">Honorable Dismissal / Transfer Credentials</option>
-      <option value="Letter of Recommendation">Letter of Recommendation</option>
-      <option value="Permit to Transfer">Permit to Transfer</option>
-      <option value="Transcript of Records (TOR)">Transcript of Records (TOR)</option>
-      <option value="Verification / Authentication (CAV)">Verification / Authentication (CAV)</option>
-      <option value="Others (specify in additional info)">Others</option>
+        <option value="">--Select Document--</option>
+        <option value="Certificate of Enrollment">Certificate of Enrollment</option>
+        <option value="Certificate of General Weighted Average (GWA)">Certificate of General Weighted Average (GWA)</option>
+        <option value="Certificate of Graduation">Certificate of Graduation</option>
+        <option value="Certificate of Grades">Certificate of Grades</option>
+        <option value="Certificate of Honors">Certificate of Honors</option>
+        <option value="Certificate of No Pending Case">Certificate of No Pending Case</option>
+        <option value="Certificate of Ranking">Certificate of Ranking</option>
+        <option value="Certified True Copy of Diploma">Certified True Copy of Diploma</option>
+        <option value="Certified True Copy of Records">Certified True Copy of Records</option>
+        <option value="Form 137 / Permanent Record (SF10)">Form 137 / Permanent Record (SF10)</option>
+        <option value="Honorable Dismissal / Transfer Credentials">Honorable Dismissal / Transfer Credentials</option>
+        <option value="Letter of Recommendation">Letter of Recommendation</option>
+        <option value="Permit to Transfer">Permit to Transfer</option>
+        <option value="Transcript of Records (TOR)">Transcript of Records (TOR)</option>
+        <option value="Verification / Authentication (CAV)">Verification / Authentication (CAV)</option>
+        <option value="Others (specify in additional information box)">Others</option>
     </select>
-
-    <textarea name="additional-info-2" placeholder="Additional information regarding your request" required></textarea>
-    <textarea name="purpose" placeholder="Purpose of the Request" required></textarea>
-
-    <!-- BUTTONS WRAPPER -->
-    <div class="buttons-container">
-      <button type="submit">Send Request</button>
-      <a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
-        Go back to Homepage
-      </a>
-    </div>
-
+    
+    <textarea name="additional_info" placeholder="Additional information regarding your request" required></textarea>
+    <textarea name="purpose" placeholder="Purpose of the Request (Required for your request to be processed)" required></textarea>
+    
     <a class="status-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdioEUSx0ewG7ctsIQU2kKJojM7psuOITkX71Lj6oI24o-ilw/viewform?usp=dialog" target="_blank">
-      Form for Tracking your Document
+        Form for Tracking your Document
     </a>
-  </form>
-</div>
+    
+    <button type="submit">Send Request</button>
+</form>
 
-<!-- LOGIN MODAL -->
+<a class="status-link" href="https://pginhsrequest.wordpress.com/" target="_blank">
+    Go back to Homepage
+</a>
+
+<!-- LOGIN POPUP -->
 <div id="loginModal">
-  <div class="modal-box">
-    <h3>Student Login Required</h3>
-    <input id="loginEmail" type="email" placeholder="Email">
-    <input id="loginPassword" type="password" placeholder="Password">
-    <button onclick="loginAndSubmit()">Login & Submit</button>
-    <button onclick="closeModal()">Cancel</button>
-    <p id="loginError" style="color:red;"></p>
-  </div>
+    <div class="modal-box">
+        <h3>Student Login Required</h3>
+        <input id="loginEmail" type="email" placeholder="Email">
+        <input id="loginPassword" type="password" placeholder="Password">
+        <button onclick="loginAndSubmit()">Login & Submit</button>
+        <button onclick="closeModal()">Cancel</button>
+        <p id="loginError" style="color:red;"></p>
+    </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script>
-// STARS GENERATOR
-const starsContainer = document.getElementById("starsContainer");
-const starCount = 200;
-for (let i = 0; i < starCount; i++) {
-  const star = document.createElement("div");
-  star.classList.add("star");
-  star.style.top = Math.random() * 200 + "vh";
-  star.style.left = Math.random() * 200 + "vw";
-  star.style.width = Math.random() * 3 + 1 + "px";
-  star.style.height = star.style.width;
-  star.style.opacity = Math.random() * 0.8 + 0.2;
-  starsContainer.appendChild(star);
-}
-
-// FIREBASE
 const firebaseConfig = {
-  apiKey:"AIzaSyAal-tUtavmqhKDGfY5ETXTanvBoieN304",
-  authDomain:"student-document-request-4cd93.firebaseapp.com",
-  projectId:"student-document-request-4cd93",
+    apiKey: "AIzaSyAal-tUtavmqhKDGfY5ETXTanvBoieN304",
+    authDomain: "student-document-request-4cd93.firebaseapp.com",
+    projectId: "student-document-request-4cd93",
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+</script>
 
-// EMAILJS
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
 emailjs.init("AEp6caL5vX8Yt2-Ln");
 
 let formToSubmit;
 document.getElementById("requestForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  formToSubmit = this;
-  document.getElementById("loginModal").style.display = "flex";
+    e.preventDefault();
+    formToSubmit = this;
+    document.getElementById("loginModal").style.display = "flex";
 });
 
-function closeModal(){ document.getElementById("loginModal").style.display="none"; }
+function closeModal() {
+    document.getElementById("loginModal").style.display = "none";
+}
 
-function loginAndSubmit(){
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value.trim();
-  const error = document.getElementById("loginError");
+function loginAndSubmit() {
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    const error = document.getElementById("loginError");
 
-  if(!email||!password){ error.innerText="Enter email and password."; return; }
+    if(!email || !password){
+        error.innerText = "Enter email and password.";
+        return;
+    }
 
-  auth.signInWithEmailAndPassword(email,password)
-    .then(()=>{
-      document.getElementById("studentEmail").value = email;
-      closeModal();
-      emailjs.sendForm('service_kypw3ko','template_5gra4yf',formToSubmit)
-        .then(()=>{ formToSubmit.submit(); })
-        .catch(()=>{ formToSubmit.submit(); });
-    })
-    .catch(err=>{ error.innerText = err.message; });
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            document.getElementById("studentEmail").value = email;
+            closeModal();
+            emailjs.sendForm('service_kypw3ko','template_5gra4yf',formToSubmit)
+                .then(() => formToSubmit.submit())
+                .catch(() => formToSubmit.submit());
+        })
+        .catch(err => {
+            error.innerText = err.message;
+        });
 }
 </script>
+
 </body>
 </html>
