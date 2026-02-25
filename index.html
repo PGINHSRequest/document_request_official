@@ -6,62 +6,103 @@
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    /* Sky to deep blue gradient */
-    background: linear-gradient(to bottom, #87CEEB, #0D47A1);
+    background: #0a1f44; /* Dark blue base */
     min-height: 100vh;
     padding: 40px 20px;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Main form container with pastel gradient and shadow */
+form {
+    background: linear-gradient(135deg, #FFF8B5, #B3D9FF);
+    padding: 40px 30px;
+    border-radius: 25px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    box-sizing: border-box;
+    color: #0a1f44;
+    position: relative;
+}
+
+/* Decorative rectangle on top with orange borders */
+.form-decorative-bar {
+    position: absolute;
+    top: -40px; 
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #0a1f44;
+    border-top: 6px solid #FFA500;
+    border-bottom: 6px solid #FFA500;
+    box-shadow: 0 0 15px rgba(255,165,0,0.3);
+    z-index: 2;
+}
+
+/* Form heading */
 h2 {
     text-align: center;
-    color: white;
     margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
+    z-index: 3;
 }
 
-form {
-    background: #e3f2fd;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 650px;
-    margin: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,.2);
-}
-
-input, select, textarea, button {
+/* Inputs, selects, textareas */
+input, select, textarea {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin-bottom: 12px;
-    border-radius: 6px;
-    border: 1px solid #bbdefb;
+    border-radius: 12px;
+    border: 1px solid #0a1f44;
     box-sizing: border-box;
+    font-size: 16px;
+    background: rgba(255,255,255,0.9);
+    color: #0a1f44;
+    position: relative;
+    z-index: 3;
 }
 
+/* Buttons */
 button {
-    background: linear-gradient(135deg,#FFD700,#FFEB3B);
-    border: none;
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 2px solid #0a1f44;
+    background: linear-gradient(45deg, #A2D5F2, #FFF5BA);
+    color: #0a1f44;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
+    position: relative;
+    z-index: 3;
 }
-
 button:hover {
-    opacity: 0.9;
+    background: linear-gradient(45deg, #8AC4E9, #FFF1A8);
+    transform: translateY(-2px);
 }
 
+/* Status link */
 .status-link {
     display: block;
     text-align: center;
     margin: 25px auto;
     padding: 14px;
-    background: #1565c0;
-    color: white;
+    background: linear-gradient(45deg, #A2D5F2, #FFF5BA);
+    color: #0a1f44;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     max-width: 650px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* LOGIN MODAL */
+/* Login modal */
 #loginModal {
     display: none;
     position: fixed;
@@ -69,17 +110,28 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.7);
+    background: rgba(0,0,0,0.7);
     justify-content: center;
     align-items: center;
 }
-
 .modal-box {
-    background: white;
+    background: linear-gradient(135deg, #FFF8B5, #B3D9FF);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 25px;
     width: 350px;
     text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+.modal-box input {
+    width: 90%;
+    margin: 10px auto;
+}
+.modal-box button {
+    width: 90%;
+}
+#loginError {
+    color: red;
+    margin-top: 8px;
 }
 </style>
 </head>
@@ -88,6 +140,8 @@ button:hover {
 <h2>PGINHS Student Document Request Form</h2>
 
 <form id="requestForm" action="https://formsubmit.co/pginhsrequest@gmail.com" method="POST">
+    <div class="form-decorative-bar"></div>
+
     <input type="hidden" name="_captcha" value="false">
     <input type="text" name="first_name" placeholder="First Name" required>
     <input type="text" name="middle_name" placeholder="Middle Name" required>
@@ -158,11 +212,11 @@ button:hover {
         <input id="loginPassword" type="password" placeholder="Password">
         <button onclick="loginAndSubmit()">Login & Submit</button>
         <button onclick="closeModal()">Cancel</button>
-        <p id="loginError" style="color:red;"></p>
+        <p id="loginError"></p>
     </div>
 </div>
 
-<!-- FIREBASE -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script>
@@ -175,7 +229,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 </script>
 
-<!-- EMAILJS -->
+<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
 emailjs.init("AEp6caL5vX8Yt2-Ln");
